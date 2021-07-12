@@ -26,7 +26,11 @@
   }
   
   .dropzoneContent {
-    margin-top: 20%;
+    margin-top: 35%;
+  }
+
+  .dropzoneText:hover {
+    color: #fff;
   }
 
   .dropzoneText {

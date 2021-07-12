@@ -1,1 +1,6 @@
+.env
 node_modules
+config.json
+_helpers/
+_middleware/
+accounts/

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css';
+
+.fileCollection {
+    background-color: #FFE3F5;
+    margin-top: 8%;
+    height: 750px;
+    margin-left: auto!important;
+}
+
+.AudioFile {
+    background: #392F5A;
+    height: 200px;
+    width: 200px;
+    margin: 5%;
+}
+
+.FileHeader {
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 21px;
+    padding-top: 5%;
+    font-weight: 800;
+}
+
+.AudioFile {
+    margin-top: 30px;
+}
+
+.DeleteFile {
+    height: 55px;
+    width: 55px;
+    background-color: #EEC8E0;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 72%;
+}
+
+.PromptHeader {
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 14px;
+    padding-top: 5%;
+    font-weight: 500;
+}

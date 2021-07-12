@@ -40,6 +40,10 @@
 .nav-link {
     display: flex;
 }
+.nav-redirect {
+  text-decoration: none;
+  color: #fff;
+}
 .navbar-text {
     margin-left: 10px;
 }
