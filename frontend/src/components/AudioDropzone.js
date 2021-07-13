@@ -39,8 +39,18 @@ function AudioDropzone() {
       "customer-id": customer_id,
       "file-name": file_name
     };
-    return await axios.post(`http://localhost:4000/files/retrieve-sound-id`, data);
+    return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
   }
+
+  const updateSoundData = async (sound_id, customer_id) => {
+    
+    var data = {
+      "sound-id": sound_id,
+      "customer-id": customer_id
+  }
+    return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
+  }
+
 
   const doTranscode = async () => {
     setMessage('Loading ffmpeg-core.js');
@@ -62,6 +72,7 @@ function AudioDropzone() {
       let sound_id = output.data;
       var bucket_file = new File([new Blob([data.buffer], { type: 'audio/wav' })], "sounds/" + customer_id + "/" + sound_id + ".wav");
       uploadFileToS3(bucket_file);
+      updateSoundData(sound_id, customer_id);
     })();
   };
 
