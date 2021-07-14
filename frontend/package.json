@@ -5,9 +5,9 @@
   "dependencies": {
     "@ffmpeg/core": "^0.10.0",
     "@ffmpeg/ffmpeg": "^0.10.1",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^13.1.9",
     "aws-sdk": "^2.943.0",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
@@ -20,6 +20,7 @@
     "react-dropzone": "^11.3.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-select": "^4.3.1",
     "sox": "^0.1.0",
     "web-vitals": "^1.0.1"
   },
@@ -51,5 +52,8 @@
     "whitelist": [
       "API_URL"
     ]
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }

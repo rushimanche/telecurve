@@ -39,7 +39,10 @@ function AudioDropzone() {
       "customer-id": customer_id,
       "file-name": file_name
     };
-    return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
+
+    return await axios.post(`https://telecurve.herokuapp.com/files/retrieve-sound-id`, data);
+    //return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
+    
   }
 
   const updateSoundData = async (sound_id, customer_id) => {
@@ -47,8 +50,11 @@ function AudioDropzone() {
     var data = {
       "sound-id": sound_id,
       "customer-id": customer_id
-  }
-    return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
+    };
+
+    return await axios.post(`https://telecurve.herokuapp.com/files/update-database-with-s3`, data);
+    //return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
+
   }
 
 
