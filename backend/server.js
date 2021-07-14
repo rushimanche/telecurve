@@ -1,4 +1,5 @@
 ﻿require('rootpath')();
+const path = require('path');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -31,5 +32,5 @@ app.get('*', (req, res) => {
 app.use(errorHandler);
 
 // start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 80;
+const port = 80;
 app.listen(port, () => console.log('Server listening on port ' + port));
