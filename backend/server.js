@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../frontend/build')));
+app.use(express.static(path.resolve(__dirname, 'build')));
 
 // allow cors requests from any origin and with credentials
 app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
@@ -25,12 +25,12 @@ app.use('/files', require('./files/files.controller'));
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
 // global error handler
 app.use(errorHandler);
 
 // start server
-const port = 80;
+const port = 3000;
 app.listen(port, () => console.log('Server listening on port ' + port));
