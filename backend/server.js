@@ -25,7 +25,7 @@ app.use('/files', require('./files/files.controller'));
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
 // global error handler
