@@ -4,15 +4,85 @@
 .fileCollection {
     background-color: #FFE3F5;
     margin-top: 8%;
-    height: 750px;
+    height: 100%;
     margin-left: auto!important;
 }
 
-.AudioFile {
+.AudioFileBox {
     background: #392F5A;
     height: 200px;
     width: 200px;
     margin: 5%;
+}
+
+.AudioFileListItem {
+    background: #392F5A;
+    height: 7%;
+    width: 90%;
+    margin: 5%;
+    border-radius: 25px;
+    color: #fff;
+    font-family: 'Poppins';
+}
+
+.AudioFileListElements {
+    margin-right: 90%;
+    padding-top: 1%;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position:relative
+}
+
+.AudioFileListLogo {
+    margin-left: 25%;
+}
+
+.AudioFileListName{
+    position: absolute;
+    left: 90%;
+    bottom: 13%;
+    font-size: 21px;
+}
+
+.AudioFilePlayButton{
+    position: absolute;
+    left: 500%;
+    cursor:pointer;
+}
+
+.AudioFileDownloadButton{
+    position: absolute;
+    left: 630%;
+    cursor:pointer;
+}
+
+.AudioFileDeleteButton{
+    position: absolute;
+    left: 820%;
+    cursor:pointer;
+}
+
+.AudioFilePlayButtonTitle{
+    position: absolute;
+    left: 540%;
+    bottom: 23%;
+    cursor:pointer;
+}
+
+.AudioFileDownloadButtonTitle{
+    position: absolute;
+    left: 670%;
+    bottom: 23%;
+    cursor:pointer;
+}
+
+.AudioFileDeleteButtonTitle{
+    position: absolute;
+    left: 860%;
+    bottom: 23%;
+    cursor:pointer;
 }
 
 .FileHeader {
@@ -23,7 +93,7 @@
     font-weight: 800;
 }
 
-.AudioFile {
+.AudioFileBox {
     margin-top: 30px;
 }
 
@@ -42,4 +112,70 @@
     font-size: 14px;
     padding-top: 5%;
     font-weight: 500;
+}
+
+.ManageHeading {
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 40px;
+    padding-top: 5%;
+    font-weight: 800;
+}
+
+.modal {
+    font-size: 12px;
+  }
+.modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+}
+.modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+}
+.modal > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+}
+.modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+}
+
+.ListChoices {
+    flex-direction: row;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+.PreviousChoiceButton {
+    margin-right: 50%;
+}
+.PreviousChoiceButtonTitle {
+    position: absolute;
+    font-family:'Poppins';
+    font-weight: 500;
+    right: 47%;
+    top: 122.8%;
+}
+.NextChoiceButton {
+    
+}
+.NextChoiceButtonTitle {
+    
 }

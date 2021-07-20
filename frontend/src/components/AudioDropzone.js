@@ -1,5 +1,5 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react'
-import { useDropzone } from 'react-dropzone'
+import React, { useCallback, useState, useEffect, useRef } from 'react';
+import { useDropzone } from 'react-dropzone';
 import "./styles/Dropzone.css";
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import S3 from "react-aws-s3";
@@ -71,8 +71,12 @@ function AudioDropzone() {
 
     //hardcoded customer id and name for temporary usage
     var customer_id = 1;
-    var file_name = String(Date.now());
+    var file_name = prompt('What would you like to call this file?');
 
+    if (!file_name) {
+      file_name = Date.now()
+    }
+    
     (async function(){
       let output = await getSoundID(customer_id, file_name);
       let sound_id = output.data;
@@ -108,7 +112,7 @@ function AudioDropzone() {
         Bucket: S3_BUCKET,
         Key: file.name
     };
-
+    
     myBucket.putObject(params)
         .on('httpUploadProgress', (evt) => {
           console.log('success!')
@@ -120,16 +124,19 @@ function AudioDropzone() {
 
   return (
     <section className="UploadPage">
+      <div className="AudioHeading">
+        Welcome back, Dovid!
+      </div>
       <div className="FileDropzone mx-auto dropzone">
         <div className="">
           <div className="" {...getRootProps()}>
-            <label className="">
-              <input className="file-input" type="file" name="resume" {...getInputProps({ multiple: false })} />
+            <div className="">
+              <input className="file-input" type="file" name="resume" {...getInputProps({ multiple: false })} accept=".wav,.mp3,.mp4,.m4a,.gsm"/>
               <div className="dropzoneContent">
                 <span className="dropzoneDrag"> 📁 </span>
                 <p className="dropzoneText">Choose a file or drag it here to upload</p>
               </div>
-            </label>
+            </div>
           </div>
           <div className="">
             {message ? message : null}

@@ -32,5 +32,5 @@ app.get('*', (req, res) => {
 app.use(errorHandler);
 
 // start server
-const port = 3000;
+const port = 2000;
 app.listen(port, () => console.log('Server listening on port ' + port));

@@ -4,7 +4,13 @@
   .fileList {
     margin: 0;
   }
-  
+  .AudioHeading{
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 40px;
+    padding-top: 5%;
+    font-weight: 800;
+  }
   .dropzoneDrag {
     font-size: 2rem;
     color: #777;
@@ -26,7 +32,7 @@
   }
   
   .dropzoneContent {
-    margin-top: 35%;
+    margin-top: 25%;
   }
 
   .dropzoneText:hover {

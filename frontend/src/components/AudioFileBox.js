@@ -111,9 +111,9 @@ const options = [
 ]
 
 
-function AudioFile() {
+function AudioFileBox() {
   return (
-    <div className="AudioFile">
+    <div className="AudioFileBox">
     <span class="DeleteFile"></span>
       <div className="FileHeader">
         thankyou1.gsm
@@ -126,4 +126,4 @@ function AudioFile() {
   );
 }
 
-export default AudioFile;
+export default AudioFileBox;

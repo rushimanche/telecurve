@@ -4,7 +4,7 @@
     "description": "Telecurve API",
     "license": "MIT",
     "scripts": {
-        "start": "node ./server.js",
+        "start": "nodemon ./server.js",
         "start:dev": "nodemon ./server.js",
         "build": "cd client && npm install && npm run build"
     },
@@ -28,6 +28,6 @@
         "yamljs": "^0.3.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.3"
+        "nodemon": "^2.0.12"
     }
 }

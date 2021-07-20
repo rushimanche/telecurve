@@ -4,12 +4,16 @@ const AWS = require('aws-sdk');
 require('dotenv').config()
 
 module.exports = {
+    getFiles,
+    deleteFile,
     retrieveSoundID,
-    updateDatabaseWithS3
+    updateDatabaseWithS3,
+    getTemporaryURL
 };
 
-const s3 = new AWS.S3()
 AWS.config.update({accessKeyId: process.env.NODE_APP_ACCESS_ID, secretAccessKey: process.env.NODE_APP_ACCESS_KEY})
+const s3 = new AWS.S3()
+
 
 const { host, port, user, password, database } = config.database;
 let con = mysql.createConnection({
@@ -24,8 +28,37 @@ con.connect(function(err) {
   console.log("Connected to database!");
 });
 
-function retrieveSoundID({ data }) {
+function getFiles({ data }) {
+  const customer_id = data['customer-id'];
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT id, name, s3_url FROM sounds WHERE customer = ${customer_id}`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      resolve(result);
+    });
+  });
+}
 
+function deleteFile({ data }) {
+  const customer_id = data['customer_id'];
+  const sound_id = data['sound_id'];
+  return new Promise((resolve, reject) => {
+    var sql = `DELETE FROM sounds WHERE id = ${sound_id}`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      var params = {  Bucket: process.env.NODE_APP_BUCKET_NAME, Key: "sounds/" + customer_id + "/" + sound_id + ".wav" };
+
+      s3.deleteObject(params, function(err, data) {
+        if (err) console.log(err, err.stack);  // error
+        else     console.log();                 // deleted
+      });
+      resolve(result);
+    });
+  });
+}
+
+
+function retrieveSoundID({ data }) {
   const customer_id = data['customer-id'];
   const file_name = data['file-name'];
   return new Promise((resolve, reject) => {
@@ -40,30 +73,6 @@ function retrieveSoundID({ data }) {
     });
   });
 }
-
-function getPresignedURL(customer_id, sound_id){
-
-  return new Promise((resolve, reject) => {
-    //get presigned url
-
-    var myBucket = process.env.NODE_APP_BUCKET_NAME;
-    var myKey = "sounds/" + customer_id + "/" + sound_id + ".wav"; 
-    const signedUrlExpireSeconds = 60 * 5;
-    try {
-      const url = s3.getSignedUrl('getObject', {
-        Bucket: myBucket,
-        Key: myKey,
-        Expires: signedUrlExpireSeconds
-      });
-      resolve(url)
-    }
-    catch {
-      console.log('S3 Object does not exist');
-      resolve('');
-    }
-  });
-
-}
 function updateDatabaseWithS3({ data }) {
 
   const customer_id = data['customer-id'];
@@ -71,9 +80,15 @@ function updateDatabaseWithS3({ data }) {
   const s3_location = "s3://" + process.env.NODE_APP_BUCKET_NAME + "/sounds/" + customer_id + "/" + sound_id + ".wav"; 
   const object_url = "https://" + process.env.NODE_APP_BUCKET_NAME + ".s3.amazonaws.com/sounds/" + customer_id + "/" + sound_id + ".wav";
 
-  getPresignedURL(customer_id, sound_id).then(function(url) {
+  var data = {
+    'customer-id': customer_id,
+    'sound-id': sound_id
+  };
+
+  console.log(data);
+
+  getDatabaseTemporaryURL(data).then(function(url) {
     if(url) {
-      console.log(url);
       var s3_acess_key = url.substring(url.lastIndexOf("Id=") + 3, url.lastIndexOf("&Expires"));
       var s3_signature = url.substring(url.lastIndexOf("ture=") + 5);
       var s3_expiration = url.substring(url.lastIndexOf("pires=") + 6, url.lastIndexOf("&Signatur"));
@@ -90,3 +105,57 @@ function updateDatabaseWithS3({ data }) {
 
 }
 
+function getDatabaseTemporaryURL(data) {
+
+  const customer_id = data['customer-id'];
+  const sound_id = data['sound-id'];
+  
+  return new Promise((resolve, reject) => {
+    //get presigned url
+
+    var myBucket = process.env.NODE_APP_BUCKET_NAME;
+    var myKey = "sounds/" + customer_id + "/" + sound_id + ".wav"; 
+    const signedUrlExpireSeconds = 120;
+    try {
+      const url = s3.getSignedUrl('getObject', {
+        Bucket: myBucket,
+        Key: myKey,
+        ResponseContentDisposition: 'attachment',
+        Expires: signedUrlExpireSeconds
+      });
+      resolve(url)
+    }
+    catch {
+      console.log('S3 Object does not exist');
+      resolve('');
+    }
+  });
+
+}
+
+function getTemporaryURL({ data }) {
+
+  const customer_id = data['customer-id'];
+  const sound_id = data['sound-id'];
+  
+  return new Promise((resolve, reject) => {
+    //get presigned url
+
+    var myBucket = process.env.NODE_APP_BUCKET_NAME;
+    var myKey = "sounds/" + customer_id + "/" + sound_id + ".wav"; 
+    const signedUrlExpireSeconds = 120;
+    try {
+      const url = s3.getSignedUrl('getObject', {
+        Bucket: myBucket,
+        Key: myKey,
+        ResponseContentDisposition: 'attachment',
+        Expires: signedUrlExpireSeconds
+      });
+      resolve(url)
+    }
+    catch {
+      console.log('S3 Object does not exist');
+      resolve('');
+    }
+  });
+}
