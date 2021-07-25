@@ -3,6 +3,8 @@ import './styles/ManageFiles.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+
+
 const fs = require('fs')
 const Path = require('path')
 const Axios = require('axios')
@@ -17,6 +19,7 @@ function AudioFileListItem(props) {
   var customer_id = props.customer_id;
   var s3_url = props.s3_url;
 
+
   const [playing, setPlaying] = useState(false);
   const [playingAudio, setPlayingAudio] = useState([]);
 
@@ -26,9 +29,9 @@ function AudioFileListItem(props) {
       "customer-id": customer_id,
       "sound-id": sound_id
     };
-
+    
     if(state) {
-      axios.post(`/files/get-temporary-url`, data).then(function(result) {
+      axios.post(`http://localhost:2000/files/get-temporary-url`, data).then(function(result) {
         var audio = new Audio(result.data)
         setPlayingAudio(audio)
         if(playing) {
@@ -42,6 +45,25 @@ function AudioFileListItem(props) {
             }, false);
         }
       });;
+      
+      
+      /*
+      if(state) {
+        axios.post(`/files/get-temporary-url`, data).then(function(result) {
+          var audio = new Audio(result.data)
+          setPlayingAudio(audio)
+          if(playing) {
+            audio.pause()
+          }
+          else {
+            audio.play()
+            setPlaying(true)
+            audio.addEventListener('ended', function() {
+              setPlaying(false)
+              }, false);
+          }
+        });;
+      */
     }
     else {
       playingAudio.pause()
@@ -58,9 +80,17 @@ function AudioFileListItem(props) {
       "sound-id": sound_id
     };
 
+    
+    axios.post(`http://localhost:2000/files/get-temporary-url`, data).then(async function(result) {
+      window.open(result.data)
+    });;
+    
+    
+    /*
     axios.post(`/files/get-temporary-url`, data).then(async function(result) {
       window.open(result.data)
     });;
+    */
   
   }
 

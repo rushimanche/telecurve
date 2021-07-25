@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css';
+
+.MenuPage {
+    background-color: #FFE3F5;
+    margin-top: 8%;
+    height: 100%;
+    margin-left: auto!important;
+}
+
+.MenuHeading {
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 40px;
+    padding-top: 5%;
+    font-weight: 800;
+}
+
+.GreetingSelection{
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 5%;
+}
+
+.GreetingDropdown{
+    margin-top: 5%;
+}
+.MenuSelection{
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 5%;
+}
+
+.MenuDropdown{
+    margin-top: 5%;
+}
+
+.StorySelection{
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 5%;
+}
+.StoryCarousel{
+    margin-top: 5%;
+    padding-bottom: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+    z-index: 1;
+}
+.StoryCarouselBorder{
+    background: #fff;
+    border-style: solid;
+    border-color: #ABABAB;
+    border-width: 10px;
+    padding-top: 2.3%;
+    padding-bottom: 1.3%;
+    z-index: 1;
+}
+.StoryCarouselItem{
+    height: 20%;
+    width: 75%;
+    margin-top: 5%;
+    background: #392F5A;
+}
+
+.StoryCarouselItemCounter {
+
+    margin-top: 10%;
+    height: 60px;
+    width: 60px;
+    background-color: #EEC8E0;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.StoryCarouselItemCounterText{
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20%;
+}
+
+.StoryCarouselItemName {
+    color: #fff;
+    margin-top: 8%;
+}
+.StoryDropdown{
+    padding-bottom: 20%;
+    margin-top: 20%;
+    z-index: 20;
+    overflow: visible;
+}
+
+.react-multi-carousel-dot-list {
+    position: static !important;
+    margin-top: 1% !important;
+    margin-bottom: 0 !important;
+}
+
+.react-multi-carousel-list {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+}

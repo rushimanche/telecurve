@@ -40,8 +40,8 @@ function AudioDropzone() {
       "file-name": file_name
     };
 
-    return await axios.post(`/files/retrieve-sound-id`, data);
-    //return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
+    //return await axios.post(`/files/retrieve-sound-id`, data);
+    return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
     
   }
 
@@ -52,8 +52,8 @@ function AudioDropzone() {
       "customer-id": customer_id
     };
 
-    return await axios.post(`/files/update-database-with-s3`, data);
-    //return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
+    //return await axios.post(`/files/update-database-with-s3`, data);
+    return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
 
   }
 
@@ -61,10 +61,10 @@ function AudioDropzone() {
   const doTranscode = async () => {
     setMessage('Loading ffmpeg-core.js');
     await ffmpeg.load();
-    setMessage('Start transcoding');
+    setMessage('Uploading file');
     ffmpeg.FS('writeFile', filename, await fetchFile(file));
     await ffmpeg.run('-i', filename, 'test.wav');
-    setMessage('Complete transcoding');
+    setMessage('Upload to manager complete. Sound file will be available and playable on the manger within 1-2 minutes.');
     const data = ffmpeg.FS('readFile', 'test.wav');
     setAudioSrc(URL.createObjectURL(new Blob([data.buffer], { type: 'audio/wav' })));
 
@@ -112,6 +112,8 @@ function AudioDropzone() {
         Bucket: S3_BUCKET,
         Key: file.name
     };
+
+    console.log(params)
     
     myBucket.putObject(params)
         .on('httpUploadProgress', (evt) => {

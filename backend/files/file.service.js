@@ -4,6 +4,11 @@ const AWS = require('aws-sdk');
 require('dotenv').config()
 
 module.exports = {
+    updateGreeting,
+    updateMenu,
+    getIVR,
+    getIVRDests,
+    updateIVRDest,
     getFiles,
     deleteFile,
     retrieveSoundID,
@@ -27,6 +32,69 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected to database!");
 });
+
+function updateGreeting({ data }) {
+  const customer_id = data['customer-id'];
+  const sound_id = data['sound-id'];
+  return new Promise((resolve, reject) => {
+    var sql = `UPDATE ivrs SET greeting = ${sound_id} WHERE customer = ${customer_id}`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      resolve('');
+    });
+  });
+}
+
+function updateMenu({ data }) {
+  const customer_id = data['customer-id'];
+  const sound_id = data['sound-id'];
+  return new Promise((resolve, reject) => {
+    var sql = `UPDATE ivrs SET menu = ${sound_id} WHERE customer = ${customer_id}`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      resolve('');
+    });
+  });
+}
+
+
+function getIVR({ data }) {
+  const customer_id = data['customer-id'];
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT greeting, menu FROM ivrs WHERE customer = ${customer_id}`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      resolve(result);
+    });
+  });
+}
+
+function getIVRDests({ data }) {
+  const customer_id = data['customer-id'];
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT dtmf, sound FROM ivr_dests WHERE customer = ${customer_id}`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      resolve(result);
+    });
+  });
+}
+
+function updateIVRDest({ data }) {
+  const customer_id = data['customer-id'];
+  const dtmf_id = data['dtmf-id'];
+  const sound_id = data['sound-id'];
+
+  return new Promise((resolve, reject) => {
+    var sql = `INSERT INTO ivr_dests (customer, dtmf, sound) VALUES (${customer_id}, ${dtmf_id}, ${sound_id}) ON DUPLICATE KEY UPDATE sound = ${sound_id};`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      resolve(result);
+    });
+  });
+}
+
+
 
 function getFiles({ data }) {
   const customer_id = data['customer-id'];

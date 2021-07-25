@@ -26,7 +26,8 @@ function Manage() {
       var data = {
         "customer-id": customer_id
       };
-      let response = await axios.post(`/files/get-files`, data)
+      let response = await axios.post(`http://localhost:2000/files/get-files`, data)
+      //let response = await axios.post(`/files/get-files`, data)
       setFiles(response.data)
       setLoading(false);
     }
@@ -42,12 +43,20 @@ function Manage() {
     };
 
     if (window.confirm("Are you sure you want to delete this file?")) {
+    
+      
+      axios.post(`http://localhost:2000/files/delete-file`, data).then(function(result) {
+        //remove item from react list through hook
+        setFiles(files => files.filter(fl => fl.id !== sound_id));
+      });
+      
+      
+      /*
       axios.post(`/files/delete-file`, data).then(function(result) {
         //remove item from react list through hook
         setFiles(files => files.filter(fl => fl.id !== sound_id));
-        console.log(result.data);
       });
-
+      */
     }
 
   }
