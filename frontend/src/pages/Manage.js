@@ -7,6 +7,14 @@ import AudioFileListItem from '../components/AudioFileListItem';
 import axios from 'axios';
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import Loader from "react-loader-spinner";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+  withRouter
+} from "react-router-dom";
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
@@ -16,10 +24,29 @@ function Manage() {
   const [loading, setLoading] = useState(false);
   const [firstVal, setFirstVal] = useState(0);
   const [secondVal, setSecondVal] = useState(10);
-  const customer_id = 1;
+
+
+  const location = useLocation();
+  
+  if(location.state){
+    var customer_id  = location.state.customer_id;
+    var adminIsAccessing = location.state.adminIsAccessing;
+  }
+  else {
+    var customer_id = 1;
+  }
+
 
 
   useEffect(() => {
+
+    if(location.state){
+      var customer_id  = location.state.customer_id;
+    }
+    else {
+      var customer_id = 1;
+    }
+    
     async function getFiles() {
       setLoading(true);
       
@@ -85,7 +112,7 @@ function Manage() {
       </head>
       <div className="row" >
         <div className="col-2">
-          <Navbar />
+          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing}/>
         </div>
         <div className="col-9 mx-auto fileCollection">
           <div className="ManageHeading">

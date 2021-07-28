@@ -15,7 +15,7 @@ const AWS = require('aws-sdk');
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
 
-function GreetingMenu() {
+function GreetingMenu(props) {
     const [files, setFiles] = useState([]);
     const [greeting, setGreeting] = useState('');
     const [menu, setMenu] = useState('');
@@ -23,7 +23,7 @@ function GreetingMenu() {
     const [selectedGreetingOption, setSelectedGreetingOption] = useState(null);
     const [selectedMenuOption, setSelectedMenuOption] = useState(null);
 
-    var customer_id = 1;
+    var customer_id = props.customer_id || 1;
 
     useEffect(() => {
         async function getFiles() {
@@ -146,7 +146,7 @@ function GreetingMenu() {
         </div>
         <div className="StorySelection">
             Stories
-            {(options.length !== 0) && <StoryCarousel options={options}/>}      
+            {(options.length !== 0) && <StoryCarousel options={options} customer_id={customer_id} />}      
         </div>
         
     </div>

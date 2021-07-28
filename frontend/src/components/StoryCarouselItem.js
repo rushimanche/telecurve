@@ -9,7 +9,7 @@ import axios from 'axios';
 function StoryCarouselItem(props) {
   var dtmf = props.dest_id;
   var dtmf_val = dtmf
-  var customer_id = 1;
+  var customer_id = props.customer_id || 1;
 
   const [selectedIVROption, setSelectedIVROption] = useState(null);
   const [IVRSound, setIVRSound] = useState(null);
@@ -71,9 +71,9 @@ function StoryCarouselItem(props) {
     menu: base => ({
       ...base,
       // override border radius to match the box
-      borderRadius: 20,
-      width: "60%",
-      marginLeft: '20%',
+      borderRadius: 40,
+      width: "100%",
+      marginLeft: '0%',
       fontSize: '12px',
       // kill the gap
       marginTop: 0

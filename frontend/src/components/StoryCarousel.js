@@ -10,7 +10,7 @@ import axios from 'axios';
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 function StoryCarousel(props) {
     const [ivrDests, setIVRDests] = useState([]);
-    var customer_id = 1;
+    var customer_id = props.customer_id || 1;
 
     const responsive = {
         desktop: {
@@ -36,7 +36,7 @@ function StoryCarousel(props) {
             "customer-id": customer_id
           };
           let response = await axios.post(`http://localhost:2000/files/get-ivr-dests`, data)
-          //let response = await axios.post(`/files/get-files`, data)
+          //let response = await axios.post(`/files/get-ivr-dests`, data)
           setIVRDests(response.data)
         }
         getIVRDests() 
@@ -166,7 +166,7 @@ function StoryCarousel(props) {
           centerMode={true}
           renderDotsOutside={true}
           >
-          {dmtfs.map((fl) => <div>{(ivrDests.length !== 0) && <StoryCarouselItem key={fl.value} dest_id={fl.value} ivr_dests={ivrDests} options={props.options} />}</div>)}
+          {dmtfs.map((fl) => <div>{(ivrDests.length !== 0) && <StoryCarouselItem key={fl.value} dest_id={fl.value} ivr_dests={ivrDests} options={props.options} customer_id={customer_id} />}</div>)}
 
         </Carousel>
       </div>

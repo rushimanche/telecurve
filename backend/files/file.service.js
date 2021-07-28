@@ -87,7 +87,7 @@ function updateIVRDest({ data }) {
 
   return new Promise((resolve, reject) => {
     var sql = `INSERT INTO ivr_dests (customer, dtmf, sound) VALUES (${customer_id}, ${dtmf_id}, ${sound_id}) ON DUPLICATE KEY UPDATE sound = ${sound_id};`;
-    con.query(sql, function (err, result) {
+    con.query(sql, function (err, result) { 
       if (err) throw err;
       resolve(result);
     });

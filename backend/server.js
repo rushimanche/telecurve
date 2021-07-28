@@ -5,7 +5,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const errorHandler = require('_middleware/error-handler');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,7 +16,7 @@ app.use(express.static(path.resolve(__dirname, 'build')));
 // allow cors requests from any origin and with credentials
 app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
 
-// account api routes
+// file api routes
 app.use('/accounts', require('./accounts/accounts.controller'));
 
 // file api routes
@@ -28,9 +27,12 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
-// global error handler
-app.use(errorHandler);
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 // start server
 const port = 2000;
 app.listen(port, () => console.log('Server listening on port ' + port));

@@ -15,6 +15,7 @@ import {
 import Upload from './pages/Upload';
 import Manage from './pages/Manage';
 import Menu from './pages/Menu';
+import Admin from './pages/Admin';
 import { useEffect } from 'react';
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
@@ -42,6 +43,18 @@ function App() {
                 <Manage />
               </Route>
               <Route path="/menu">
+                <Menu />
+              </Route>
+              <Route path="/admin">
+                <Admin />
+              </Route>
+              <Route path="/admin/upload">
+                <Upload />
+              </Route>
+              <Route path="/admin/manage">
+                <Manage />
+              </Route>
+              <Route path="/admin/menu">
                 <Menu />
               </Route>
             </Switch>

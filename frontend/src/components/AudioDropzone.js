@@ -22,7 +22,7 @@ const myBucket = new AWS.S3({
   region: REGION,
 })
 
-function AudioDropzone() {
+function AudioDropzone(props) {
   const [filename, setFilename] = useState(null)
   const [file, setFile] = useState(null)
   const [message, setMessage] = useState(null)
@@ -32,7 +32,8 @@ function AudioDropzone() {
     log: true,
   });
 
-  
+  var customer_id = props.customer_id || 1;
+
   const getSoundID = async (customer_id, file_name) => {
     
     var data = {
@@ -68,9 +69,6 @@ function AudioDropzone() {
     const data = ffmpeg.FS('readFile', 'test.wav');
     setAudioSrc(URL.createObjectURL(new Blob([data.buffer], { type: 'audio/wav' })));
 
-
-    //hardcoded customer id and name for temporary usage
-    var customer_id = 1;
     var file_name = prompt('What would you like to call this file?');
 
     if (!file_name) {
@@ -96,7 +94,6 @@ function AudioDropzone() {
   const onDrop = useCallback(acceptedFile => {
     setFilename(acceptedFile[0].name)
     setFile(acceptedFile[0])
-    console.log(acceptedFile[0])
     // console.log(acceptedFile)
   }, [])
 
@@ -113,7 +110,6 @@ function AudioDropzone() {
         Key: file.name
     };
 
-    console.log(params)
     
     myBucket.putObject(params)
         .on('httpUploadProgress', (evt) => {
@@ -127,7 +123,7 @@ function AudioDropzone() {
   return (
     <section className="UploadPage">
       <div className="AudioHeading">
-        Welcome back, Dovid!
+        Welcome back!
       </div>
       <div className="FileDropzone mx-auto dropzone">
         <div className="">

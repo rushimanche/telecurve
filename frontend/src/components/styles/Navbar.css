@@ -9,6 +9,10 @@
 *
 */
 
+.admin-icon {
+  margin-top: 2%;
+  margin-left: 3%;
+}
 .vertical-nav {
     min-width: 18rem;
     height: 100vh;
