@@ -4,14 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import React, { useCallback, useState, useEffect, useRef } from 'react';
-import StoryCarouselItem from './StoryCarouselItem';
+import StoryCarouselItem from './StoryCarouselItem';  
 import axios from 'axios';
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 function StoryCarousel(props) {
-    const [ivrDests, setIVRDests] = useState([]);
+    var [ivrDests, setIVRDests] = useState([]);
     var customer_id = props.customer_id || 1;
-
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -37,7 +36,12 @@ function StoryCarousel(props) {
           };
           let response = await axios.post(`http://localhost:2000/files/get-ivr-dests`, data)
           //let response = await axios.post(`/files/get-ivr-dests`, data)
-          setIVRDests(response.data)
+          if(response.data.length){
+            setIVRDests(response.data)
+          }
+          else{
+            setIVRDests(['none'])
+          }
         }
         getIVRDests() 
         

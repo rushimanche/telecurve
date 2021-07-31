@@ -99,15 +99,31 @@
     position:relative;
 }
 
+.UserEditButton{
+    position: absolute;
+    left: 375%;
+    bottom: 5%;
+    cursor: pointer;
+}
+
+.UserEditButtonTitle{
+    position: absolute;
+    left: 440%;
+    bottom: 25%;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+}
+
 .UserUploadButton{
     position: absolute;
-    left: 400%;
+    left: 518%;
     bottom: 5%;
 }
 
 .UserUploadButtonTitle{
     position: absolute;
-    left: 480%;
+    left: 580%;
     bottom: 25%;
     font-size: 18px;
     color: black;
@@ -115,13 +131,13 @@
 
 .UserManageButton{
     position: absolute;
-    left: 620%;
+    left: 690%;
     bottom: 5%;
 }
 
 .UserManageButtonTitle{
     position: absolute;
-    left: 700%;
+    left: 750%;
     bottom: 25%;
     font-size: 18px;
     color: black;
@@ -129,7 +145,7 @@
 
 .UserMenuButton{
     position: absolute;
-    left: 860%;
+    left: 870%;
     bottom: 5%;
 }
 
@@ -139,4 +155,34 @@
     bottom: 25%;
     font-size: 18px;
     color: black;
+}
+
+.UserEditPopup {
+    text-align: center;
+}
+
+.UserEditPopupTitle{
+    color: #fff;
+    font-family: 'Poppins';
+    font-size: 24px;
+    padding-top: 5%;
+    font-weight: 800;
+    margin-right: 5%;
+}
+
+.editUser{
+    color: #fff;
+    text-align: center;
+    padding-top: 2%;
+}
+
+.submitEditUser {
+    text-align: center;
+}
+
+.UserEditPopupCloseButton{
+    background-color: #FFE3F5;
+    border-radius: 100%;
+    border: none;
+    float: left;
 }

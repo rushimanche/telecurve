@@ -28,7 +28,7 @@ function AccessUsers() {
                 Manage Telecurve Users
             </div>
             <br></br>
-            {users.map((fl) => <div>{(users.length !== 0) && <UserListItem key={fl.customer}  user={fl.user} customer_id={fl.customer} adminIsAccessing={adminIsAccessing} />}</div>)}
+            {users.map((fl) => <div>{(users.length !== 0) && <UserListItem key={fl.customer}  fname={fl.fname} lname={fl.lname} email={fl.email} user={fl.user} organizationName={fl.organizationName} organizationEmail={fl.organizationEmail} phoneNumber={fl.phoneNumber} customer_id={fl.customer} adminIsAccessing={adminIsAccessing} />}</div>)}
         </div>
     </div>
   );

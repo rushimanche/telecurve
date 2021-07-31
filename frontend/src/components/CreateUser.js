@@ -9,7 +9,6 @@ import axios from 'axios';
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 function CreateUser(props) {
     const [ivrDests, setIVRDests] = useState([]);
-    var customer_id = 1;
 
     useEffect(() => {
         async function getIVRDests() {
@@ -94,6 +93,7 @@ function CreateUser(props) {
                             <Field name="organizationName" type="text" className={'form-control' + (errors.organizationName && touched.organizationName ? ' is-invalid' : '')} />
                             <ErrorMessage name="organizationName" component="div" className="invalid-feedback" />
                         </div>
+                        <br></br>
                         <div className="form-group">
                             <label htmlFor="organizationEmail">Organization Email</label>
                             <Field name="organizationEmail" type="text" className={'form-control' + (errors.organizationEmail && touched.organizationEmail ? ' is-invalid' : '')} />

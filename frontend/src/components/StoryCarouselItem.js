@@ -10,7 +10,6 @@ function StoryCarouselItem(props) {
   var dtmf = props.dest_id;
   var dtmf_val = dtmf
   var customer_id = props.customer_id || 1;
-
   const [selectedIVROption, setSelectedIVROption] = useState(null);
   const [IVRSound, setIVRSound] = useState(null);
 
@@ -24,7 +23,9 @@ function StoryCarouselItem(props) {
         setIVRSound(ivr_sound && ivr_sound['label'])
       }
     }
-    sortIVRDests() 
+    if(props.ivr_dests[0] !== 'none') {
+      sortIVRDests() 
+    }
     
   }, []);
   //console.log(IVRSound)

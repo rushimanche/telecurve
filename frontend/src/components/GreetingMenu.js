@@ -45,9 +45,10 @@ function GreetingMenu(props) {
             };
             let response = await axios.post(`http://localhost:2000/files/get-ivr`, data)
             //let response = await axios.post(`/files/get-ivr`, data)
-            
-            setGreeting(response.data[0]['greeting'])
-            setMenu(response.data[0]['menu'])
+            if (response.data[0]){
+              setGreeting(response.data[0]['greeting'])
+              setMenu(response.data[0]['menu'])
+            }
         }
 
         getFiles()
