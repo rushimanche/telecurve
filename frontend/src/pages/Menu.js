@@ -65,7 +65,7 @@ function Menu(props) {
       </head>
       <div className="row" >
         <div className="col-2">
-          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing}/>
+          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing} setToken={props.setToken}/>
         </div>
         <div className="col-10 mx-auto MenuPage">
           <div className="MenuHeading">

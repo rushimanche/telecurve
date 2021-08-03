@@ -166,7 +166,7 @@ function UserListItem(props) {
                       });;
                     */
 
-                      axios.post(`/accounts/patch-user`, data).then(function(result) {
+                    axios.post(`/accounts/patch-user`, data).then(function(result) {
                         if(result){
                             alert('User successfully updated!');
                             resetForm();

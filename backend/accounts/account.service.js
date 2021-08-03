@@ -7,7 +7,8 @@ const saltRounds = 10;
 module.exports = {
     createUser,
     getUsers,
-    patchUser
+    patchUser,
+    loginUser
 };
 
 const { host, port, user, password, database } = config.database;
@@ -43,7 +44,7 @@ function createUser({ data }) {
                     var sql3 = `INSERT INTO people (customer, fname, lname, email, user, secret) VALUES (${result[0].id}, '${firstName}', '${lastName}', '${email}', '${username}', '${hash}')`;
                     con.query(sql3, function (err, result) {
                     if (err) resolve(false)
-                    resolve(true);
+                    resolve(result[0].id);
                     });
                 });
             });        
@@ -65,7 +66,7 @@ function getUsers() {
 
 function patchUser({ data }) {
   const customer_id = data['customer_id'];
-
+ß
   const organizationName = data['organizationName'];
   const organizationEmail = data['organizationEmail'];
   const phoneNumber = data['phoneNumber'];
@@ -73,7 +74,7 @@ function patchUser({ data }) {
   const lastName = data['lastName'];
   const email = data['email'];
   const username = data['username'];
-  const unsalted_password = data['password'];
+  const unsalted_password = data['password'];ß
 
   if(organizationName) {
     var sql = `UPDATE customers SET name = '${organizationName}' WHERE id = ${customer_id}`;
@@ -134,4 +135,29 @@ function patchUser({ data }) {
       });
     });        
   }
+}
+
+function loginUser({ data }) {
+  const username = data['username'];
+  const unsalted_password = data['password'];
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT secret, customer FROM people where user = '${username}'`;
+    try{
+      con.query(sql, function (err, result) {
+        if(err) resolve(false)
+        if(result.length > 0) {
+          bcrypt.compare(unsalted_password, result[0].secret, function(output_err, output_result) {
+            if(output_err) resolve(false)
+            resolve(result[0].customer)
+          });
+        }
+        else {
+          resolve(false)
+        }
+      });
+    }
+    catch {
+      resolve(false)
+    }
+  });   
 }

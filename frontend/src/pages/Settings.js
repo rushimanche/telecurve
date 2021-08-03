@@ -35,7 +35,7 @@ function Settings(props) {
       </head>
       <div className="row" >
         <div className="col-2">
-          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing}/>
+          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing} setToken={props.setToken}/>
         </div>
         <div className="col-9 mx-auto settingsPage">
           <SettingsConfig customer_id={customer_id} />
