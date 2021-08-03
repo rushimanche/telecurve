@@ -12,13 +12,24 @@ function AccessUsers() {
     var customer_id = 1;
 
     useEffect(() => {
+
+        /*
         async function getUsers() {
             axios.get(`http://localhost:2000/accounts/get-users`).then(function(result) {
                 setUsers(result.data)
             });;
         }
         getUsers() 
+
+        */
         
+        async function getUsers() {
+            axios.get(`/accounts/get-users`).then(function(result) {
+                setUsers(result.data)
+            });;
+        }
+        getUsers() 
+
     }, []);
 
   return (

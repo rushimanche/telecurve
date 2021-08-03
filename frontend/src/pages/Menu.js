@@ -17,7 +17,7 @@ import {
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
-function Menu() {
+function Menu(props) {
 
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function Menu() {
     var adminIsAccessing = location.state.adminIsAccessing;
   }
   else {
-    var customer_id = 1;
+    var customer_id = props.customer_id;
   }
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function Menu() {
       var customer_id  = location.state.customer_id;
     }
     else {
-      var customer_id = 1;
+      var customer_id = props.customer_id;
     }
     
     async function getFiles() {
@@ -48,8 +48,8 @@ function Menu() {
       var data = {
         "customer-id": customer_id
       };
-      let response = await axios.post(`http://localhost:2000/files/get-files`, data)
-      //let response = await axios.post(`/files/get-files`, data)
+      //let response = await axios.post(`http://localhost:2000/files/get-files`, data)
+      let response = await axios.post(`/files/get-files`, data)
       setFiles(response.data)
       setLoading(false);
     }

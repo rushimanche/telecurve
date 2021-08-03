@@ -31,8 +31,8 @@ function GreetingMenu(props) {
           var data = {
             "customer-id": customer_id
           };
-          let response = await axios.post(`http://localhost:2000/files/get-files`, data)
-          //let response = await axios.post(`/files/get-files`, data)
+          //let response = await axios.post(`http://localhost:2000/files/get-files`, data)
+          let response = await axios.post(`/files/get-files`, data)
           for (let i = 0; i < response.data.length; i++) {
             setOptions(oldArray => [...oldArray, {'value': response.data[i]['id'], 'label': response.data[i]['name']}])
           }
@@ -43,8 +43,8 @@ function GreetingMenu(props) {
             var data = {
               "customer-id": customer_id
             };
-            let response = await axios.post(`http://localhost:2000/files/get-ivr`, data)
-            //let response = await axios.post(`/files/get-ivr`, data)
+            //let response = await axios.post(`http://localhost:2000/files/get-ivr`, data)
+            let response = await axios.post(`/files/get-ivr`, data)
             if (response.data[0]){
               setGreeting(response.data[0]['greeting'])
               setMenu(response.data[0]['menu'])
@@ -104,8 +104,8 @@ function GreetingMenu(props) {
             "customer-id": customer_id,
             "sound-id": selectedOption['value']
         };
-        let response = await axios.post(`http://localhost:2000/files/update-greeting`, data);
-        //let response = await axios.post(`/files/update-greeting`, data);
+        //let response = await axios.post(`http://localhost:2000/files/update-greeting`, data);
+        let response = await axios.post(`/files/update-greeting`, data);
         setGreeting(selectedOption)
     }
 
@@ -116,8 +116,8 @@ function GreetingMenu(props) {
             "customer-id": customer_id,
             "sound-id": selectedOption['value']
         };
-        let response = await axios.post(`http://localhost:2000/files/update-menu`, data);
-        //let response = await axios.post(`/files/update-menu`, data);
+        //let response = await axios.post(`http://localhost:2000/files/update-menu`, data);
+        let response = await axios.post(`/files/update-menu`, data);
         setMenu(selectedOption)
     }
 

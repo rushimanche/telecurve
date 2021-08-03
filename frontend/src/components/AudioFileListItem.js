@@ -30,28 +30,11 @@ function AudioFileListItem(props) {
       "sound-id": sound_id
     };
     
-    
+    /*
     if(state) {
       axios.post(`http://localhost:2000/files/get-temporary-url`, data).then(function(result) {
         var audio = new Audio(result.data)
-        setPlayingAudio(audio)
-        if(playing) {
-          audio.pause()
-        }
-        else {
-          audio.play()
-          setPlaying(true)
-          audio.addEventListener('ended', function() {
-            setPlaying(false)
-            }, false);
-        }
-      });;
-      
-      
-    /*
-    if(state) {
-      axios.post(`/files/get-temporary-url`, data).then(function(result) {
-        var audio = new Audio(result.data)
+        audio.crossOrigin = 'anonymous';
         setPlayingAudio(audio)
         if(playing) {
           audio.pause()
@@ -65,6 +48,24 @@ function AudioFileListItem(props) {
         }
       });;
     */
+      
+    
+    if(state) {
+      axios.post(`/files/get-temporary-url`, data).then(function(result) {
+        var audio = new Audio(result.data)
+        audio.crossOrigin = "anonymous";
+        setPlayingAudio(audio)
+        if(playing) {
+          audio.pause()
+        }
+        else {
+          audio.play()
+          setPlaying(true)
+          audio.addEventListener('ended', function() {
+            setPlaying(false)
+            }, false);
+        }
+      });;
     }
     else {
       playingAudio.pause()
@@ -81,17 +82,17 @@ function AudioFileListItem(props) {
       "sound-id": sound_id
     };
 
-    
+    /*
     axios.post(`http://localhost:2000/files/get-temporary-url`, data).then(async function(result) {
       window.open(result.data)
     });;
+    */
     
     
-    /*
     axios.post(`/files/get-temporary-url`, data).then(async function(result) {
       window.open(result.data)
     });;
-    */
+    
   
   }
 

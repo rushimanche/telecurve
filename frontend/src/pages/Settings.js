@@ -1,8 +1,8 @@
 import '../App.css';
+import '../components/styles/Settings.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from '../components/Navbar';
-import AudioDropzone from '../components/AudioDropzone';
-import React, { useCallback, useState, useEffect, useRef } from 'react';
+import SettingsConfig from '../components/SettingsConfig';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,33 +14,35 @@ import {
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
-
-function Upload(props) {
+function Settings(props) {
 
   const location = useLocation();
-
-  if (location.state){
-    var customer_id = location.state.customer_id || props.customer_id;
+  
+  if(location.state){
+    var customer_id  = location.state.customer_id;
     var adminIsAccessing = location.state.adminIsAccessing;
   }
   else {
     var customer_id = props.customer_id;
   }
+
+ 
+
   return (
-    <div className="Upload">
+    <div className="Settings">
       <head>
         <link rel="stylesheet" href="boxicons.min.css" />
       </head>
       <div className="row" >
         <div className="col-2">
-          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing} setToken={props.setToken}/>
+          <Navbar customer_id={customer_id} adminIsAccessing={adminIsAccessing}/>
         </div>
-        <div className="col-9 mx-auto">
-          <AudioDropzone customer_id={customer_id} />
+        <div className="col-9 mx-auto settingsPage">
+          <SettingsConfig customer_id={customer_id} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Upload;
+export default Settings;

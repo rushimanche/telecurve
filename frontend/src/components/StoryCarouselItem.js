@@ -44,8 +44,8 @@ function StoryCarouselItem(props) {
         "dtmf-id": dtmf,
         "sound-id": selectedOption['value']
     };
-    let response = await axios.post(`http://localhost:2000/files/update-ivr-dest`, data);
-    //let response = await axios.post(`/files/update-ivr-dest`, data);
+    //let response = await axios.post(`http://localhost:2000/files/update-ivr-dest`, data);
+    let response = await axios.post(`/files/update-ivr-dest`, data);
     setIVRSound(selectedOption.label)
   }
 

@@ -18,7 +18,7 @@ import {
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
-function Manage() {
+function Manage(props) {
 
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ function Manage() {
     var adminIsAccessing = location.state.adminIsAccessing;
   }
   else {
-    var customer_id = 1;
+    var customer_id = props.customer_id;
   }
 
 
@@ -44,7 +44,7 @@ function Manage() {
       var customer_id  = location.state.customer_id;
     }
     else {
-      var customer_id = 1;
+      var customer_id = props.customer_id;
     }
     
     async function getFiles() {
@@ -53,8 +53,8 @@ function Manage() {
       var data = {
         "customer-id": customer_id
       };
-      let response = await axios.post(`http://localhost:2000/files/get-files`, data)
-      //let response = await axios.post(`/files/get-files`, data)
+      //let response = await axios.post(`http://localhost:2000/files/get-files`, data)
+      let response = await axios.post(`/files/get-files`, data)
       setFiles(response.data)
       setLoading(false);
     }
@@ -71,19 +71,19 @@ function Manage() {
 
     if (window.confirm("Are you sure you want to delete this file?")) {
     
-      
+      /*
       axios.post(`http://localhost:2000/files/delete-file`, data).then(function(result) {
         //remove item from react list through hook
         setFiles(files => files.filter(fl => fl.id !== sound_id));
       });
+      */
       
       
-      /*
       axios.post(`/files/delete-file`, data).then(function(result) {
         //remove item from react list through hook
         setFiles(files => files.filter(fl => fl.id !== sound_id));
       });
-      */
+      
     }
 
   }

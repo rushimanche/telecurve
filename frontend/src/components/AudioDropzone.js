@@ -41,8 +41,8 @@ function AudioDropzone(props) {
       "file-name": file_name
     };
 
-    //return await axios.post(`/files/retrieve-sound-id`, data);
-    return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
+    return await axios.post(`/files/retrieve-sound-id`, data);
+    //return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
     
   }
 
@@ -53,8 +53,8 @@ function AudioDropzone(props) {
       "customer-id": customer_id
     };
 
-    //return await axios.post(`/files/update-database-with-s3`, data);
-    return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
+    return await axios.post(`/files/update-database-with-s3`, data);
+    //return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
 
   }
 

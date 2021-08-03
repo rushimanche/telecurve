@@ -151,7 +151,22 @@ function UserListItem(props) {
                       setUsername(data.username)
                     }
 
+                    /*
                     axios.post(`http://localhost:2000/accounts/patch-user`, data).then(function(result) {
+                        if(result){
+                            alert('User successfully updated!');
+                            resetForm();
+                            closeModal();
+                        }
+                        else{
+                            alert('Error updating user! Please try again.');
+                            resetForm();
+                            closeModal();
+                        }
+                      });;
+                    */
+
+                      axios.post(`/accounts/patch-user`, data).then(function(result) {
                         if(result){
                             alert('User successfully updated!');
                             resetForm();
