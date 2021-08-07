@@ -6,12 +6,16 @@ import Select from "react-select";
 import axios from 'axios';
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+
 function StoryCarouselItem(props) {
+
   var dtmf = props.dest_id;
   var dtmf_val = dtmf
   var customer_id = props.customer_id || 1;
   const [selectedIVROption, setSelectedIVROption] = useState(null);
   const [IVRSound, setIVRSound] = useState(null);
+  const [spaceState, setSpaceState] = useState(false);
+  
 
   useEffect(() => {
     async function sortIVRDests() {
@@ -28,13 +32,6 @@ function StoryCarouselItem(props) {
     }
     
   }, []);
-  //console.log(IVRSound)
-  /*
-  var ivrresult = (props.options.find(x => x.value === IVRSound));
-  if(ivrresult){
-    setIVRSound(ivrresult && ivrresult['label']);
-  }
-  */
 
   const updateIVR = async (selectedOption) => {
 
@@ -44,10 +41,36 @@ function StoryCarouselItem(props) {
         "dtmf-id": dtmf,
         "sound-id": selectedOption['value']
     };
-    //let response = await axios.post(`http://localhost:2000/files/update-ivr-dest`, data);
-    let response = await axios.post(`/files/update-ivr-dest`, data);
+    let response = await axios.post(`http://localhost:2000/files/update-ivr-dest`, data);
+    //let response = await axios.post(`/files/update-ivr-dest`, data);
     setIVRSound(selectedOption.label)
   }
+
+  const increaseSpace = () => {
+    var element = document.getElementsByClassName('react-multi-carousel-list')[0];
+    if(spaceState) {
+      element.style.paddingBottom = '0';
+      setSpaceState(false)
+    }
+    else {
+      element.style.paddingBottom = '40%';
+      setSpaceState(true)
+
+    }
+
+    const concernedElement = document.querySelector(".StoryDropdown");
+
+    document.addEventListener("mousedown", (event) => {
+      if (concernedElement.contains(event.target)) {
+        element.style.paddingBottom = '40%';
+        setSpaceState(true)
+      } else {
+        element.style.paddingBottom = '0';
+        setSpaceState(false)
+      }
+    });
+  }
+
 
   const customStyles = {
     control: (base, state) => ({
@@ -93,7 +116,7 @@ function StoryCarouselItem(props) {
                 {dtmf}
             </div>        
         </div>
-        <div className="StoryDropdown">
+        <div className="StoryDropdown" id="StoryDropdown" onClick={increaseSpace}>
             <Select styles={customStyles} 
                     options={props.options} 
                     placeholder={IVRSound} 

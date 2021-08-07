@@ -74,7 +74,7 @@ function CreateUser(props) {
                         "password": fields.password
                     };
                     
-                    /*
+                    
                     axios.post(`http://localhost:2000/accounts/create-user`, data).then(function(result) {
                         if(result){
                             alert('User successfully created!');
@@ -85,8 +85,10 @@ function CreateUser(props) {
                             resetForm();
                         }
                       });;
-                    */
-
+                    
+                    
+                    
+                    /*
                     axios.post(`/accounts/create-user`, data).then(function(result) {
                         if(result){
                             alert('User successfully created!');
@@ -97,6 +99,8 @@ function CreateUser(props) {
                             resetForm();
                         }
                     });;
+                    */
+                    
                     fields = {}
                 }}
                 render={({ errors, status, touched }) => (

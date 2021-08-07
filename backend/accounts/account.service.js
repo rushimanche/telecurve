@@ -8,7 +8,10 @@ module.exports = {
     createUser,
     getUsers,
     patchUser,
-    loginUser
+    loginUser,
+    updateCallForward,
+    getEmail,
+    getCallForwardingNumber
 };
 
 const { host, port, user, password, database } = config.database;
@@ -66,7 +69,6 @@ function getUsers() {
 
 function patchUser({ data }) {
   const customer_id = data['customer_id'];
-ß
   const organizationName = data['organizationName'];
   const organizationEmail = data['organizationEmail'];
   const phoneNumber = data['phoneNumber'];
@@ -74,7 +76,7 @@ function patchUser({ data }) {
   const lastName = data['lastName'];
   const email = data['email'];
   const username = data['username'];
-  const unsalted_password = data['password'];ß
+  const unsalted_password = data['password'];
 
   if(organizationName) {
     var sql = `UPDATE customers SET name = '${organizationName}' WHERE id = ${customer_id}`;
@@ -160,4 +162,62 @@ function loginUser({ data }) {
       resolve(false)
     }
   });   
+}
+
+function updateCallForward({ data }) {
+
+  const customer_id = data['customer_id'];
+  const call_forward = data['call_forward'];
+
+  return new Promise((resolve, reject) => {
+    var sql = `UPDATE customers SET call_forward = '${call_forward}' WHERE id = ${customer_id}`;
+    try{
+      con.query(sql, function (err, result) {
+        if(err) resolve(false)
+        resolve(true)
+      });
+    }
+    catch {
+      resolve(false)
+    }
+  });   
+
+}
+
+function getEmail({ data }) {
+
+  const customer_id = data['customer_id'];
+
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT email FROM customers WHERE id = ${customer_id}`;
+    try{
+      con.query(sql, function (err, result) {
+        if(err) resolve(false)
+        resolve(result)
+      });
+    }
+    catch {
+      resolve(false)
+    }
+  });   
+
+}
+
+function getCallForwardingNumber({ data }) {
+
+  const customer_id = data['customer_id'];
+
+  return new Promise((resolve, reject) => {
+    var sql = `SELECT call_forward FROM customers WHERE id = ${customer_id}`;
+    try{
+      con.query(sql, function (err, result) {
+        if(err) resolve(false)
+        resolve(result)
+      });
+    }
+    catch {
+      resolve(false)
+    }
+  });   
+
 }

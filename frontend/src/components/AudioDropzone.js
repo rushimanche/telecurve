@@ -41,8 +41,8 @@ function AudioDropzone(props) {
       "file-name": file_name
     };
 
-    return await axios.post(`/files/retrieve-sound-id`, data);
-    //return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
+    //return await axios.post(`/files/retrieve-sound-id`, data);
+    return await axios.post(`http://localhost:2000/files/retrieve-sound-id`, data);
     
   }
 
@@ -53,8 +53,8 @@ function AudioDropzone(props) {
       "customer-id": customer_id
     };
 
-    return await axios.post(`/files/update-database-with-s3`, data);
-    //return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
+    //return await axios.post(`/files/update-database-with-s3`, data);
+    return await axios.post(`http://localhost:2000/files/update-database-with-s3`, data);
 
   }
 
@@ -64,7 +64,7 @@ function AudioDropzone(props) {
     await ffmpeg.load();
     setMessage('Uploading file');
     ffmpeg.FS('writeFile', filename, await fetchFile(file));
-    await ffmpeg.run('-i', filename, 'test.wav');
+    await ffmpeg.run('-i', filename,  '-ac', '1', '-ar', '8000', 'test.wav');
     setMessage('Upload to manager complete. Sound file will be available and playable on the manger within 1-2 minutes.');
     const data = ffmpeg.FS('readFile', 'test.wav');
     setAudioSrc(URL.createObjectURL(new Blob([data.buffer], { type: 'audio/wav' })));
@@ -139,14 +139,6 @@ function AudioDropzone(props) {
           <div className="">
             {message ? message : null}
           </div>
-          {
-            audioSrc ? 
-            <audio controls>
-            <source src={audioSrc} type="audio/wav"/>
-                Your browser does not support the audio tag.
-        </audio> : null
-          }
-          
         </div>
       </div>
     </section>

@@ -48,8 +48,8 @@ function Menu(props) {
       var data = {
         "customer-id": customer_id
       };
-      //let response = await axios.post(`http://localhost:2000/files/get-files`, data)
-      let response = await axios.post(`/files/get-files`, data)
+      let response = await axios.post(`http://localhost:2000/files/get-files`, data)
+      //let response = await axios.post(`/files/get-files`, data)
       setFiles(response.data)
       setLoading(false);
     }
@@ -57,6 +57,9 @@ function Menu(props) {
     
   }, [location]);
 
+  if(customer_id === 'admin') {
+    window.location.href = "/admin";
+  }
 
   return (
     <div className="Menu">

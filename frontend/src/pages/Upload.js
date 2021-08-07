@@ -26,6 +26,11 @@ function Upload(props) {
   else {
     var customer_id = props.customer_id;
   }
+
+  if(customer_id === 'admin') {
+    window.location.href = "/admin";
+  }
+  
   return (
     <div className="Upload">
       <head>

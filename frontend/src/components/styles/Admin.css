@@ -78,7 +78,7 @@
     position: absolute;
     left: 70%;
     bottom: 25%;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .UserListItem {
@@ -101,59 +101,73 @@
 
 .UserEditButton{
     position: absolute;
-    left: 375%;
+    left: 275%;
     bottom: 5%;
     cursor: pointer;
 }
 
 .UserEditButtonTitle{
     position: absolute;
-    left: 440%;
+    left: 340%;
     bottom: 25%;
-    font-size: 18px;
+    font-size: 16px;
     color: black;
     cursor: pointer;
 }
 
 .UserUploadButton{
     position: absolute;
-    left: 518%;
+    left: 410%;
     bottom: 5%;
 }
 
 .UserUploadButtonTitle{
     position: absolute;
-    left: 580%;
+    left: 480%;
     bottom: 25%;
-    font-size: 18px;
+    font-size: 16px;
     color: black;
 }
 
 .UserManageButton{
     position: absolute;
-    left: 690%;
+    left: 580%;
     bottom: 5%;
 }
 
 .UserManageButtonTitle{
     position: absolute;
-    left: 750%;
+    left: 640%;
     bottom: 25%;
-    font-size: 18px;
+    font-size: 16px;
     color: black;
 }
 
 .UserMenuButton{
     position: absolute;
-    left: 870%;
+    left: 750%;
     bottom: 5%;
 }
 
 .UserMenuButtonTitle{
     position: absolute;
-    left: 930%;
+    left: 810%;
     bottom: 25%;
-    font-size: 18px;
+    font-size: 16px;
+    color: black;
+}
+
+.UserSettingsButton{
+    position: absolute;
+    left: 890%;
+    bottom: 5%;
+}
+
+.UserSettingsButtonTitle{
+    position: absolute;
+    left: 950%;
+    bottom: 25%;
+    font-size: 16px;
     color: black;
 }
 

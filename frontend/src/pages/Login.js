@@ -2,10 +2,10 @@ import '../App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../components/styles/Authentication.css';
 import React, { useCallback, useState, useEffect, useRef } from 'react';
-import AuthenticateUser from '../components/LoginUser';
+import LoginUser from '../components/LoginUser';
 import PropTypes from 'prop-types';
 
-function Login({ setToken }) {
+function Login(props) {
 
 
   return (
@@ -13,7 +13,7 @@ function Login({ setToken }) {
       <head>
         <link rel="stylesheet" href="boxicons.min.css" />
       </head>
-      <AuthenticateUser setToken={setToken} />
+      <LoginUser setToken={props.setToken}/>
     </div>
   );
 }

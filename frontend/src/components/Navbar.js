@@ -15,8 +15,6 @@ export class Navbar extends Component {
     var isAdmin = this.props.isAdmin;
     var adminIsAccessing = this.props.adminIsAccessing;
     var customer_id = this.props.customer_id;
-    console.log(this.props);
-    
     return(
 
             <div className="vertical-nav" id="sidebar">
@@ -43,7 +41,7 @@ export class Navbar extends Component {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link onClick={() => this.props.setToken(null)} className="nav-redirect" to="/upload">
+                            <Link onClick={() => this.props.setToken(null) } className="nav-redirect" to="/upload">
                                 <a href="#" className="nav-link text-white font-italic">
                                     <box-icon name='door-open' color='#ffffff' size="md"></box-icon>
                                     <span className="navbar-text">logout</span>

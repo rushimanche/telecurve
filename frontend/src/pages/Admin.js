@@ -9,40 +9,31 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
-function Admin() {
+function Admin(props) {
 
-  const [loading, setLoading] = useState(false);
-  const isAdmin = true;
+  const isAdmin = props.token;
 
-
-  useEffect(() => {
-    async function getFiles() {
-
-    }
-    //getFiles() 
-    
-  }, []);
-
-
-  return (
-    <div className="Admin">
-      <head>
-        <link rel="stylesheet" href="boxicons.min.css" />
-      </head>
-      <div className="row" >
-        <div className="col-2">
-          <Navbar isAdmin={isAdmin}/>
-        </div>
-        <div className="col-10 mx-auto AdminPage">
-          <div className="AdminHeading">
-            Your admin panel
+  if(isAdmin === 'admin') {
+    return (
+      <div className="Admin">
+        <head>
+          <link rel="stylesheet" href="boxicons.min.css" />
+        </head>
+        <div className="row" >
+          <div className="col-2">
+            <Navbar isAdmin={isAdmin} setToken={props.setToken}/>
           </div>
-          <CreateUser />
-          <AccessUser />
+          <div className="col-10 mx-auto AdminPage">
+            <div className="AdminHeading">
+              Your admin panel
+            </div>
+            <CreateUser />
+            <AccessUser />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Admin;

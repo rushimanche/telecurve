@@ -34,8 +34,8 @@ function StoryCarousel(props) {
           var data = {
             "customer-id": customer_id
           };
-          //let response = await axios.post(`http://localhost:2000/files/get-ivr-dests`, data)
-          let response = await axios.post(`/files/get-ivr-dests`, data)
+          let response = await axios.post(`http://localhost:2000/files/get-ivr-dests`, data)
+          //let response = await axios.post(`/files/get-ivr-dests`, data)
           if(response.data.length){
             setIVRDests(response.data)
           }

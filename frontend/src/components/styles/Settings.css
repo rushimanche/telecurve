@@ -15,3 +15,51 @@
     padding-top: 5%;
     font-weight: 800;
 }
+
+.SettingsConfigCallForwardTitle {
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 3%;
+}
+
+.SettingsConfigCallForwardDescription {
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-size: 14px;
+    margin-top: 1%;
+}
+
+
+.SettingsConfigCallForwardInput{
+    width: 60%;
+    margin-left: 20%;
+}
+
+.SettingsConfigVoicemailAudioTitle{
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 3%;
+}
+
+.SettingsConfigVoicemailAudioDescription{
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-size: 14px;
+    margin-top: 1%; 
+}
+
+.SettingsConfigVoicemailEmailDescription{
+    color: #392F5A;
+    font-family: 'Poppins';
+    font-size: 14px;
+    margin-top: 1%; 
+}
+
+.VoicemailEmailInput {
+    width: 60%;
+    margin-left: 20%;
+}

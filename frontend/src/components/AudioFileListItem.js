@@ -30,7 +30,7 @@ function AudioFileListItem(props) {
       "sound-id": sound_id
     };
     
-    /*
+    
     if(state) {
       axios.post(`http://localhost:2000/files/get-temporary-url`, data).then(function(result) {
         var audio = new Audio(result.data)
@@ -47,9 +47,9 @@ function AudioFileListItem(props) {
             }, false);
         }
       });;
-    */
-      
     
+    
+    /*
     if(state) {
       axios.post(`/files/get-temporary-url`, data).then(function(result) {
         var audio = new Audio(result.data)
@@ -66,6 +66,7 @@ function AudioFileListItem(props) {
             }, false);
         }
       });;
+    */
     }
     else {
       playingAudio.pause()
@@ -82,17 +83,17 @@ function AudioFileListItem(props) {
       "sound-id": sound_id
     };
 
-    /*
+    
     axios.post(`http://localhost:2000/files/get-temporary-url`, data).then(async function(result) {
       window.open(result.data)
     });;
-    */
     
     
+    /*
     axios.post(`/files/get-temporary-url`, data).then(async function(result) {
       window.open(result.data)
     });;
-    
+    */
   
   }
 

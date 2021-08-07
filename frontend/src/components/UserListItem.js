@@ -151,7 +151,7 @@ function UserListItem(props) {
                       setUsername(data.username)
                     }
 
-                    /*
+                    
                     axios.post(`http://localhost:2000/accounts/patch-user`, data).then(function(result) {
                         if(result){
                             alert('User successfully updated!');
@@ -164,8 +164,10 @@ function UserListItem(props) {
                             closeModal();
                         }
                       });;
-                    */
-
+                    
+                    
+                    
+                    /*
                     axios.post(`/accounts/patch-user`, data).then(function(result) {
                         if(result){
                             alert('User successfully updated!');
@@ -177,7 +179,8 @@ function UserListItem(props) {
                             resetForm();
                             closeModal();
                         }
-                      });;
+                    });;
+                    */
                     fields = {}
                 }}
                 render={({ errors, status, touched }) => (
@@ -282,6 +285,22 @@ function UserListItem(props) {
         </span>
         <span className="UserMenuButtonTitle">
           menu
+        </span>
+        </Link>
+        <Link
+          to={{
+            pathname: "/settings",
+            state: {
+              customer_id: customer_id,
+              adminIsAccessing: adminIsAccessing
+            },
+          }}
+        >
+        <span className="UserSettingsButton">
+          <box-icon name='cog' color='black' size="md"></box-icon>
+        </span>
+        <span className="UserSettingsButtonTitle">
+          settings
         </span>
         </Link>
         <br />

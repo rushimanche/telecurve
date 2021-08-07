@@ -27,7 +27,10 @@ function Settings(props) {
   }
 
  
-
+  if(customer_id === 'admin') {
+    window.location.href = "/admin";
+  }
+  
   return (
     <div className="Settings">
       <head>

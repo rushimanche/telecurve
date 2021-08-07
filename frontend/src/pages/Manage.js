@@ -36,8 +36,6 @@ function Manage(props) {
     var customer_id = props.customer_id;
   }
 
-
-
   useEffect(() => {
 
     if(location.state){
@@ -53,8 +51,9 @@ function Manage(props) {
       var data = {
         "customer-id": customer_id
       };
-      //let response = await axios.post(`http://localhost:2000/files/get-files`, data)
-      let response = await axios.post(`/files/get-files`, data)
+      let response = await axios.post(`http://localhost:2000/files/get-files`, data)
+      //let response = await axios.post(`/files/get-files`, data)
+      response.data.shift();
       setFiles(response.data)
       setLoading(false);
     }
@@ -65,24 +64,31 @@ function Manage(props) {
   const handleAudioDelete = (sound_id) => {
     
     var data = {
-      "customer_id": customer_id,
+      "customer-id": customer_id,
       "sound_id": sound_id
     };
 
     if (window.confirm("Are you sure you want to delete this file?")) {
     
-      /*
+      
       axios.post(`http://localhost:2000/files/delete-file`, data).then(function(result) {
         //remove item from react list through hook
-        setFiles(files => files.filter(fl => fl.id !== sound_id));
+        console.log(result.data)
+        if(result.data){
+          setFiles(files => files.filter(fl => fl.id !== sound_id));
+        }
+        else{
+          alert('This file is currently in use! Please go to the menu tab to remove this audio from your system.')
+        }
       });
-      */
       
       
+      /*
       axios.post(`/files/delete-file`, data).then(function(result) {
         //remove item from react list through hook
         setFiles(files => files.filter(fl => fl.id !== sound_id));
       });
+      */
       
     }
 
@@ -104,7 +110,10 @@ function Manage(props) {
  
   }
  
-
+  if(customer_id === 'admin') {
+    window.location.href = "/admin";
+  }
+  
   return (
     <div className="Manage">
       <head>

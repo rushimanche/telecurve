@@ -8,11 +8,11 @@ import * as Yup from 'yup';
 import {
    Redirect
   } from "react-router-dom";
-
+import env from "react-dotenv";
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 
-function LoginUser({ setToken }) {
+function LoginUser(props) {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const toggleLogin = () => {
@@ -52,31 +52,43 @@ function LoginUser({ setToken }) {
                             "password": fields.password,
                         };
 
-                        /*
-                        axios.post(`http://localhost:2000/accounts/login-user`, data).then(function(result) {
-                            if(result.data){
-                                setToken(result.data)
-                                resetForm();
-                                return <Redirect to='/upload'/>;
-                            }
-                            else{
-                                alert('Error logging in user! Please try again.');
-                                resetForm();
-                            }
-                        });;
-                        */
+                        if(data.username === process.env.REACT_APP_LOCAL_ADMIN_USERNAME && data.password === process.env.REACT_APP_LOCAL_ADMIN_PASSWORD ) {
+                            props.setToken('admin');
+                            resetForm();
+                            window.location.href = "/admin";
+                        }
+                        else {
+                            
+                            
+                            axios.post(`http://localhost:2000/accounts/login-user`, data).then(function(result) {
+                                if(result.data){
+                                    props.setToken(result.data)
+                                    resetForm();
+                                    return <Redirect to='/upload'/>;
+                                }
+                                else{
+                                    alert('Error logging in user! Please try again.');
+                                    resetForm();
+                                }
+                            });;
+                            
 
-                        axios.post(`/accounts/login-user`, data).then(function(result) {
-                            if(result.data){
-                                setToken(result.data)
-                                resetForm();
-                                return <Redirect to='/upload'/>;
-                            }
-                            else{
-                                alert('Error logging in user! Please try again.');
-                                resetForm();
-                            }
-                        });;
+                            /*
+                            axios.post(`/accounts/login-user`, data).then(function(result) {
+                                if(result.data){
+                                    props.setToken(result.data)
+                                    resetForm();
+                                    return <Redirect to='/upload'/>;
+                                }
+                                else{
+                                    alert('Error logging in user! Please try again.');
+                                    resetForm();
+                                }
+                            });;
+                            */
+                            
+                            
+                        }
 
                         fields = {}
                     }}
@@ -96,11 +108,6 @@ function LoginUser({ setToken }) {
                             <br></br>
                             <span className="form-group LoginSubmit">
                                 <button type="submit" className="btn btn-primary mr-2">Submit</button>
-                            </span>
-                            <span className="form-group">
-                                <a href="#" className="RegisterPrompt" onClick={toggleLogin}>
-                                    Create an account
-                                </a>
                             </span>
                             <br></br>
                             <br></br>
@@ -167,10 +174,10 @@ function LoginUser({ setToken }) {
                         "password": fields.password
                     };
                     
-                    /*
+                    
                     axios.post(`http://localhost:2000/accounts/create-user`, data).then(function(result) {
                         if(result){
-                            setToken(result.data)
+                            props.setToken(result.data)
                             resetForm();
                             return <Redirect to='/upload'/>;
                         }
@@ -179,11 +186,12 @@ function LoginUser({ setToken }) {
                             resetForm();
                         }
                       });;
-                    */
+                    
 
+                    /*
                     axios.post(`/accounts/create-user`, data).then(function(result) {
                         if(result){
-                            setToken(result.data)
+                            props.setToken(result.data)
                             resetForm();
                             return <Redirect to='/upload'/>;
                         }
@@ -192,6 +200,7 @@ function LoginUser({ setToken }) {
                             resetForm();
                         }
                     });;
+                    */
                     fields = {}
                 }}
                 render={({ errors, status, touched }) => (

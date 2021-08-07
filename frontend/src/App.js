@@ -27,6 +27,7 @@ import { useEffect, useState } from 'react';
 function App() {
 
   const { token, setToken } = useToken();
+
   if(!token) {
     return(
       <div className="App">
@@ -53,7 +54,7 @@ function App() {
           <div class="col-9">
             <Switch>
               <Route path="/upload">
-                <Upload customer_id={token} setToken={setToken}/>
+                <Upload customer_id={token} setToken={setToken} />
               </Route>
               <Route path="/manage">
                 <Manage customer_id={token} setToken={setToken}/>
@@ -65,16 +66,7 @@ function App() {
                 <Settings customer_id={token} setToken={setToken}/>
               </Route>
               <Route path="/admin">
-                <Admin />
-              </Route>
-              <Route path="/admin/upload">
-                <Upload />
-              </Route>
-              <Route path="/admin/manage">
-                <Manage />
-              </Route>
-              <Route path="/admin/menu">
-                <Menu />
+                <Admin token={token} setToken={setToken}/>
               </Route>
             </Switch>
           </div>
